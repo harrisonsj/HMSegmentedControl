@@ -154,6 +154,7 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
 
     self.selectedSegmentIndex = 0;
     self.segmentEdgeInset = UIEdgeInsetsMake(0, 5, 0, 5);
+    self.edgeInset = UIEdgeInsetsMake(0, 0, 0, 0);
     self.selectionIndicatorHeight = 5.0f;
     self.selectionIndicatorEdgeInsets = UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f);
     self.selectionStyle = HMSegmentedControlSelectionStyleTextWidthStripe;
@@ -778,7 +779,7 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
 }
 
 - (void)updateSegmentsRects {
-    self.scrollView.contentInset = UIEdgeInsetsZero;
+    self.scrollView.contentInset = self.edgeInset;
     self.scrollView.frame = CGRectMake(0, 0, CGRectGetWidth(self.frame), CGRectGetHeight(self.frame));
     
     if ([self sectionCount] > 0) {
@@ -853,6 +854,12 @@ NSUInteger HMSegmentedControlNoSegment = (NSUInteger)-1;
         }
         
         self.segmentWidthsArray = [mutableSegmentWidths copy];
+    }
+    
+    if (self.selectionStyle == HMSegmentedControlSelectionStyleBox && self.selectionIndicatorBoxCornerRoundingStyle == HMSegmentedControlSelectionBoxCornerRoundingStyleRounded){
+        self.selectionIndicatorBoxLayer.cornerRadius = self.selectionIndicatorBoxLayer.bounds.size.height / 2.0;
+    }else{
+        self.selectionIndicatorBoxLayer.cornerRadius = 0;
     }
 
     self.scrollView.scrollEnabled = self.isUserDraggable;

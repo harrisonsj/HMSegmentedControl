@@ -22,6 +22,11 @@ typedef NS_ENUM(NSInteger, HMSegmentedControlSelectionStyle) {
     HMSegmentedControlSelectionStyleArrow // An arrow in the middle of the segment pointing up or down depending on `HMSegmentedControlSelectionIndicatorLocation`
 };
 
+typedef NS_ENUM(NSInteger, HMSegmentedControlSelectionBoxCornerRoundingStyle) {
+    HMSegmentedControlSelectionBoxCornerRoundingStyleRounded, // Selection box rounded corners
+    HMSegmentedControlSelectionBoxCornerRoundingStyleNone // Selection box not rounded
+};
+
 typedef NS_ENUM(NSInteger, HMSegmentedControlSelectionIndicatorLocation) {
     HMSegmentedControlSelectionIndicatorLocationTop,
     HMSegmentedControlSelectionIndicatorLocationBottom,
@@ -149,6 +154,13 @@ typedef NS_ENUM(NSInteger, HMSegmentedControlImagePosition) {
 @property (nonatomic, assign) HMSegmentedControlSelectionStyle selectionStyle;
 
 /**
+ Specifies the style of the selection indicator.
+ 
+ Default is `HMSegmentedControlSelectionStyleTextWidthStripe`
+ */
+@property (nonatomic, assign) HMSegmentedControlSelectionBoxCornerRoundingStyle selectionIndicatorBoxCornerRoundingStyle;
+
+/**
  Specifies the style of the segment's width.
  
  Default is `HMSegmentedControlSegmentWidthStyleFixed`
@@ -249,6 +261,11 @@ typedef NS_ENUM(NSInteger, HMSegmentedControlImagePosition) {
 @property (nonatomic, readwrite) UIEdgeInsets segmentEdgeInset;
 
 @property (nonatomic, readwrite) UIEdgeInsets enlargeEdgeInset;
+
+/**
+ Edge inset for entire control
+ */
+@property (nonatomic, readwrite) UIEdgeInsets edgeInset;
 
 /**
  Default is YES. Set to NO to disable animation during user selection.
